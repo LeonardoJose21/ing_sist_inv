@@ -25,21 +25,26 @@ def create_tables():
 
 # Call the function to create tables
 create_tables()
-@app.route('/',  methods = ['POST', 'GET'])
-def index():
-     if request.method == 'POST':
-        task_content = request.form['content']
-        new_task = todo(content=task_content)
-        try:
-            db.session.add(new_task)
-            db.session.commit()
-            return redirect('/')
-        except:
-            return 'There was an issue adding your task'
+# @app.route('/',  methods = ['POST', 'GET'])
+# def index():
+#      if request.method == 'POST':
+#         task_content = request.form['content']
+#         new_task = todo(content=task_content)
+#         try:
+#             db.session.add(new_task)
+#             db.session.commit()
+#             return redirect('/')
+#         except:
+#             return 'There was an issue adding your task'
 
-     else:
-        tasks = todo.query.order_by(todo.date_created).all()
-        return render_template('index.html', tasks=tasks)
+#      else:
+#         tasks = todo.query.order_by(todo.date_created).all()
+#         return render_template('index.html', tasks=tasks)
+
+@app.route('/')
+def landing():
+    return render_template('landing.html')
+
      
 if __name__ == '__main__':
     app.run(debug=True)
