@@ -1,36 +1,30 @@
-body, html {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: lightblue;
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/static/fonts/Montserrat-Regular.ttf') format('truetype');
+  /* Add other font variations as needed */
 }
 
-.content {
-    margin: 0 auto;
-    width: 400px;
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/static/fonts/OpenSans-Regular.ttf') format('truetype');
+  /* Add other font variations as needed */
 }
 
-table, td, th {
-    border: 1px solid #aaa;
+/* You can define other styles using these fonts */
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
+h1,
+h2,
+h3 {
+  font-family: 'Open Sans', sans-serif;
 }
 
-th {
-    height: 30px;
-}
+/* .hero {
+  background-image: url('../assets/landing.png');
+  background-size: cover;
+  
+  /* Add any other background properties as needed */
 
-td {
-    text-align: center;
-    padding: 5px;
-}
-
-.form {
-    margin-top: 20px;
-}
-
-#content {
-    width: 70%;
-}
+/*

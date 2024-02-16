@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import sys
+from time import sleep
 
 
 app = Flask(__name__)
@@ -25,6 +27,11 @@ def create_tables():
 
 # Call the function to create tables
 create_tables()
+list = ['Registro de proyectos',
+        'Seguimiento del progreso', 
+        'Gestión de recursos',
+        'Colaboración entre investigadores',
+        'Generación de informes']
 # @app.route('/',  methods = ['POST', 'GET'])
 # def index():
 #      if request.method == 'POST':
@@ -43,8 +50,20 @@ create_tables()
 
 @app.route('/')
 def landing():
-    return render_template('landing.html')
+    return render_template('landing.html', list=list)
 
-     
+
+@app.route('/sign-up')
+def sign_up():
+    return render_template('sign-up.html')
+
+@app.route('/log-in')
+def log_in():
+    return render_template('log-in.html')
+
+@app.route('/student')
+def student():
+     return render_template('student.html')
+
 if __name__ == '__main__':
     app.run(debug=True)

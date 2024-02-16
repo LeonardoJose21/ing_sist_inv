@@ -6,42 +6,50 @@
 
 
 {% block body %}
-<div class="h-screen">
-    <header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] mb-4">
-        <div class="m-1 ml-3">
-            <span>
-                Logo
-            </span>
-            <span class="text-2xl font-semibold">
-                Project Name
-            </span>
-        </div>
-        <div class="m-1 mr-3 space-x-1">
-            <button class="border border-[#EEEEEE] rounded p-1 hover:bg-[#00ADB5] hover:text-[#222831]">Iniciar Sesión</button>
-            <button class="bg-[#00ADB5] text-white  hover:text-[#222831] border border-[#EEEEEE] rounded p-1 ">Empezar</button>
-        </div>
 
-    </header>
-    <main class="flex flex-col justify-around h-full items-center md:flex-row space-y-3">
-        
-        <section class=" flex flex-col md:w-1/3 mx-4">
-            <h1 class="text-5xl text-[#00ADB5] font-semibold mb-2">Gestión y Seguimiento de Proyectos</h1>
-            <p class="mt-6 text-base text-[#EEEEEE]">Este sistema está diseñado para facilitar la gestión y seguimiento de proyectos de grado e investigación
-                en el programa de Ingeniería de Sistemas de la Universidad del Sinú.</p>
-        </section >
-        <section class="text-base text-[#EEEEEE]">
-            <h3 class="text-2xl text-[#00ADB5]">Funcionalidades Principales</h3>
-            <ul class="list-disc ml-3">
-                <li>Registro de proyectos</li>
-                <li>Seguimiento del progreso</li>
-                <li>Gestión de recursos</li>
-                <li>Colaboración entre investigadores</li>
-                <li>Generación de informes</li>
-            </ul>
-        </section>
-    </main>
-    <footer class="text-[#EEEEEE] text-sm bg-[#393E46] text-center">
-        <p>&copy; 2024 Universidad del Sinú - Todos los derechos reservados.</p>
-    </footer>
+<header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] items-center">
+    <a href="{{url_for('landing')}}" class="m-1 ml-3 flex flex-row">
+        <span>
+            Logo
+        </span>
+        <h1 class="text-2xl font-semibold">
+            Project Name
+        </h1>
+    </a>
+
+    <div class="mt-1 mr-3 space-x-1">
+        <a href="{{ url_for('log_in') }}"
+            class="border border-[#EEEEEE] bg-[#222831] rounded p-1 hover:bg-[#00ADB5]">Iniciar Sesión</a>
+        <a href="{{ url_for('sign_up') }}"
+            class="bg-[#222831] text-[#EEEEEE]  hover:bg-[#00ADB5] border border-[#EEEEEE] rounded p-1 ">Empezar</a>
+    </div>
+</header>
+<main
+    class="flex flex-col justify-around h-screen items-center md:flex-row space-y-3 bg-gradient-to-b from-[#222831] to-[#393E46]">
+
+    <section class=" flex flex-col md:w-1/3 mx-4">
+        <h1 class="text-5xl text-[#00ADB5] font-semibold mb-2">Gestión y Seguimiento de Proyectos</h1>
+        <p class="mt-6 text-base text-[#EEEEEE]">Este sistema está diseñado para facilitar la gestión y seguimiento
+            de proyectos de grado e investigación
+            en el programa de Ingeniería de Sistemas de la Universidad del Sinú.</p>
+    </section>
+    <section class="text-base text-[#EEEEEE]">
+        <h3 class="text-2xl text-[#00ADB5] mb-3">Funcionalidades Principales</h3>
+
+        <ul class="list-disc ml-3">
+            {%for i in range(0,5)%}
+            <li class="mb-2">
+                {{list[i]}}
+            </li>
+
+
+            {%endfor%}
+        </ul>
+    </section>
+</main>
 </div>
+
+<footer class="text-[#EEEEEE] text-sm bg-[#393E46] text-center">
+    <p>&copy; 2024 Universidad del Sinú - Todos los derechos reservados.</p>
+</footer>
 {% endblock %}

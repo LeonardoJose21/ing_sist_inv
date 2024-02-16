@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="flex flex-row h-screen">
+    <!-- Sidebar -->
+    <div class="flex flex-col text-[#EEEEEE] w-1/5 bg-[#393E46] p-2">
+        <h2 class="text-2xl border-b border-[#EEEEEE] mb-3 pb-1">Facultad De Ciencias E Ingenierías</h2>
+        <div class="flex flex-col items-center space-y-1">
+
+            
+            <!-- Adjusted image size -->
+            <div class="h-16 w-14">
+                <img src="{{ url_for('static', filename='assets/research.jpg') }}" alt="person_researching"  class="rounded-full max-w-full h-auto align-middle border-none"/>
+            </div>
+            
+            <p class="text-sm border-b border-[#EEEEEE] pb-1">leonardopastrana@unisinu.edu.co</p>
+            <hr>
+        </div>
+        <!-- opciones -->
+        <div class="flex flex-col space-y-2 mt-4 ">
+            <!-- Added hover styles to buttons -->
+            <button class="rounded p-2 hover:bg-[#222831]">Inicio</button>
+            <button class="rounded p-2 hover:bg-[#222831]">Registrar Propuesta</button>
+            <button class="rounded p-2 hover:bg-[#222831]">Seguimiento</button>
+            <Button class="rounded p-2 hover:bg-[#222831]">Descargar Guía</Button>
+            <button class="rounded p-2 hover:bg-[#222831]">Cerrar/Salir</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

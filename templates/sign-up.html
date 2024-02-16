@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+<div class="h-screen">
+    <header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] items-center">
+        <a href="{{url_for('landing')}}" class="m-1 ml-3 flex flex-row">
+            <span>
+                Logo
+            </span>
+            <h1 class="text-2xl font-semibold">
+                Project Name
+            </h1>
+        </a>
+
+        <div class="mt-1 mr-3">
+            <a href="{{ url_for('landing') }}"
+                class="border border-[#EEEEEE] bg-[#222831] rounded p-1 hover:bg-[#00ADB5]">Home</a>
+
+        </div>
+    </header>
+    <div class="flex justify-center items-center  h-full">
+        <div class="flex flex-col md:w-1/2 w-full mx-3">
+            <div class="bg-[#00ADB5] rounded-t text-[#EEEEEE] p-1">
+                <h3 class="text-lg">Registro de estudiante</h3>
+            </div>
+            <form method="POST"
+                class="flex flex-col p-4 space-y-2 bg-[#393E46] text-[#EEEEEE] rounded rounded-t-none border border-[#00ADB5]">
+
+                <div class="flex flex-col space-y-1 ">
+                    <label for="email">Correo institucional</label>
+                    <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                        type="email" placeholder="Escriba su correo institucional" name="email" id="email">
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <label for="password">Constraseña</label>
+                    <input class="rounded p-1 text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                        type="password" name="password" id="password" placeholder="*****">
+                </div>
+                <div class="flex flex-col space-y-1 ">
+                    <label for="confirm_password">Confirme su contraseña</label>
+                    <input class="rounded p-1 focus:outline-none focus:ring focus:border-[#00ADB5] text-[#222831]"
+                        type="password" name="confirm_password" id="confirm_password" placeholder="*****">
+                </div>
+                <div class="flex flex-col md:flex-row space-y-1 md:space-x-3 md:items-center md:justify-between">
+                    <a href="{{url_for('log_in')}}" class="text-sm text-[#00ADB5] mt-4  md:mt-6">Ir a login</a>
+                    <input class="bg-[#00ADB5] rounded p-1 hover:cursor-pointer md:mt-6" type="button"
+                        value="Registrarme">
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
