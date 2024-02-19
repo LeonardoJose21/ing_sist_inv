@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import sys
@@ -63,7 +63,22 @@ def log_in():
 
 @app.route('/student')
 def student():
-     return render_template('student.html')
+     return render_template('student_start.html', page='student')
 
+@app.route('/student/register_proposal', methods=['GET', 'POST'])
+def register_proposal():
+     return render_template('student_register_proposal.html', page='register_proposal')
+
+@app.route('/student/download_guide')
+def download_guide():
+    file_path = 'static/files/'
+    # Specify the filename that the browser will use when downloading the file
+    filename = 'hero.jpg'
+    # Send the file for download
+    try:
+        return send_file('static/files/hero.jpg', as_attachment=True)
+    except Exception as e:
+        return str(e)
+    
 if __name__ == '__main__':
     app.run(debug=True)

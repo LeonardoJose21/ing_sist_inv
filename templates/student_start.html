@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+<div class="flex flex-row h-screen">
+    {% include 'student_sidebar.html' %}
+    <!-- Showing the state of the proposal -->
+    <div class="flex flex-col text-[#EEEEEE] mx-5 justify-center w-full items-center space-y-2">
+        <h2 class="text-lg text-[#00ADB5] mb-3">Estado Del Proyecto</h2>
+        <ol>
+            <li class="bg-[#393E46] rounded p-2 border border-[#EEE]">
+                <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831] border border-[#EEE]">1</span>
+                Propuesta Entregada
+                <span>
+                    ✔
+                </span>
+            </li>
+                <div class="w-1/2 h-12 border-dotted border-r-2 border-r-[#00ADB5]">
+                </div>
+            <li class="bg-[#393E46] rounded p-2 opacity-70">
+                <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831]">2</span>
+                Propuesta Asignada
+                <span>
+                    ✗
+                </span>
+                
+            </li>
+            <div class="w-1/2 h-12 border-dotted border-r-2 border-r-[#00ADB5] opacity-70">
+            </div>
+            <li class="bg-[#393E46] rounded p-2 opacity-70">
+                <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831]">3</span>
+                Propuesta Evaluada
+                <span>
+                    ✗
+                </span>
+                
+            </li>
+            <div class="w-1/2 h-12 border-dotted border-r-2 border-r-[#00ADB5] opacity-70">
+            </div>
+            <li class="bg-[#393E46] rounded p-2 opacity-70">
+                <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831]">4</span>
+                Proyecto Entregado
+                <span>
+                    ✗
+                </span>
+                
+            </li>
+        </ol>
+    </div>
+</div>
+
+{% endblock %}
+
+
