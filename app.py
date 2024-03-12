@@ -1,5 +1,5 @@
 import os
-from src.database.db_connection import app
+from src.database.db_connection import app, db
 from flask_session import Session
 from src import init_app
 from dotenv import load_dotenv
@@ -8,12 +8,12 @@ load_dotenv()
 
 sess = Session()
 
-# def create_tables():
-#     with app.app_context():
-#         db.create_all()
+def create_tables():
+    with app.app_context():
+        db.create_all()
 
-# # Call the function to create tables
-# create_tables()
+# Call the function to create tables
+create_tables()
 
 
 if __name__ == '__main__':
