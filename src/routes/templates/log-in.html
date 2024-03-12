@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> Login</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="h-screen">
+    <header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] items-center">
+        <a href="{{url_for('landing_blueprint.landing')}}" class="m-1 ml-3 flex flex-row">
+            <span>
+                <img src="{{url_for('static', filename = 'assets/logo.png')}}"  alt="Logo" class="h-full w-14">
+            </span>
+            <h1 class="text-2xl font-semibold pt-3">
+                ProjectSync
+            </h1>
+        </a>
+
+        <div class="mt-1 mr-3">
+            <a href="{{ url_for('landing_blueprint.landing') }}"
+                class="border border-[#EEEEEE] bg-[#222831] rounded p-1 hover:bg-[#00ADB5]">Home</a>
+
+        </div>
+    </header>
+    <div class="flex justify-center items-center h-full">
+
+        <div class="flex flex-col md:w-1/2 w-full mx-3">
+            {% if 'error' in choosen_role.split('-') %}
+
+            <div class="disappear bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-4/5 mb-2"
+                role="alert">
+                <span>
+                    Contraseña incorrecta. Intente de nuevo
+                </span>
+            </div>
+
+            {% endif %}
+            {% if 'no_signed_up' in choosen_role.split('-') %}
+            <div class="disappear bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-4/5 mb-2"
+                role="alert">
+                <span>
+                    Usuario no registrado. Por favor, regístrese.
+                </span>
+            </div>
+
+            {%endif%}
+
+
+            <div class="bg-[#00ADB5] rounded-t text-[#EEEEEE] p-1">
+                <h3 class="text-lg">
+
+                    Iniciar Sesión Como {{choosen_role.capitalize()}}
+
+                </h3>
+
+
+            </div>
+            <form method="POST"
+                class="flex flex-col p-4 space-y-2 bg-[#393E46] text-[#EEEEEE] rounded rounded-t-none border border-[#00ADB5]"
+                action="{{url_for('log_in_blueprint.validate_log_in.validate_data', choosen_role = choosen_role)}}">
+                {% if choosen_role.split('-')[0] == 'estudiante' %}
+                <div class="flex flex-col space-y-1 ">
+                    <label for="student_cod">Código estudiantil</label>
+                    <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                        type="number" placeholder="Escriba su código estudiantil" name="student_cod" id="student_cod">
+                </div>
+                {%else%}
+                <div class="flex flex-col space-y-1 ">
+                    <label for="doc_id_number">Número de documento de indentificación</label>
+                    <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                        type="number" placeholder="Escriba número de documento" name="doc_id_number" id="doc_id_number">
+                </div>
+                {%endif%}
+                <div class="flex flex-col space-y-1">
+                    <label for="password">Constraseña</label>
+                    <input class="rounded p-1 text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                        type="password" name="password" id="password" placeholder="*****">
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <input class="bg-[#00ADB5] rounded p-1 mt-3 hover:cursor-pointer" type="submit"
+                        value="Iniciar Sesión">
+
+                    <a href="{{url_for('sign_up_blueprint.sign_up', choosen_role=choosen_role.split('-')[0])}}"
+                        class="text-sm text-[#00ADB5] mt-4  md:mt-6">Registrarse</a>
+
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

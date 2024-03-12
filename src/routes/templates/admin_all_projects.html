@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin</title>
+{% endblock %}
+
+
+{% block body %}
+{%include 'admin_toggle_button.html' %}
+<div class="flex flex-row">
+
+    {% include 'admin_sidebar.html' %}
+
+    <div class="flex flex-col h-screen w-full mt-5 justify-center items-center space-y-3">
+        <h1 class="text-[#00ADB5] text-2xl text-center">
+            Proyectos Inscritos ( {{total}} En Total)
+        </h1>
+        <table class="text-[#eee] md:w-3/4 w-4/5 border border-[#00ADB5] text-center md:mr-6 md:ml-auto">
+            <thead class="bg-[#393E46] border-b border-[#00ADB5]">
+                <th>
+                    #
+                </th>
+                <th>
+                    Título
+                </th>
+                <th>
+                    área de estudio
+                </th>
+                <th>
+                    Estado
+                </th>
+            </thead>
+            
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.area_of_study }}</td>
+                    <td>{{ project.state }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+<!-- js -->
+
+{% endblock %}

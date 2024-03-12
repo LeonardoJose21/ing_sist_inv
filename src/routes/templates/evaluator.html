@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Evaluador</title>
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+{% block body %}
+<div class="flex flex-col h-full items-center justify-center w-full px-2 mt-5">
+
+    <div class="flex flex-col md:w-2/3 space-y-4">
+        {% if message != '' %}
+        <div class="disappear text-center bg-[#00FFCA]/50 border border-[#088395] text-[#222831] px-4 py-3 rounded w-4/5 mb-2" role="alert">
+            <span>
+                Se ha calificado correctamente el proyecto
+            </span>
+        </div>
+        {% endif %}
+        
+        <h1 class="text-2xl text-[#00ADB5] text-center">
+            Evaluar propuesta para grado {{message}}
+        </h1>
+        <table class="text-[#eee] border border-[#00ADB5] rounded">
+            <thead class="border-b border-[#00ADB5] bg-[#393E46]">
+                <tr class="text-lg">
+                    <th class="w-1/4">
+                        Acción
+                    </th>
+                    <th class="w-1/4">
+                        Título
+                    </th>
+                    <th class="w-1/4">
+                        Área de estudio
+                    </th>
+                    <th class="w-1/4">
+                        Código estudiantil de los autores
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr class="text-sm text-center">
+                    <td class="w-1/8">
+                        <a class="w-full p-1 text-[#00ADB5]"
+                            href="{{ url_for('evaluator_blueprint.review.evaluator_review', project=project.project_id) }}">Revisar</a>
+                    </td>
+                    <td class="w-1/4">{{project.title}}</td>
+                    <td class="w-1/4">{{project.area_of_study}}</td>
+                    <td class="w-1/4">
+                        <ul>
+                            <li>{{project.author_1_id}}</li>
+                            <li>{{project.author_2_id}}</li>
+                            <li>{{project.author_3_id}}</li>
+
+                        </ul>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+
+    </div>
+    <a class="bg-[#393E46] text-[#eee] p-1 rounded md:w-1/5 text-center w-1/3 mt-10"
+        href="{{url_for('landing_blueprint.landing')}}"> Salir</a>
+</div>
+{% endblock %}

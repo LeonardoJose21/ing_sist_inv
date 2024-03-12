@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Estudiante - Ver calificación</title>
+{% endblock %}
+
+
+{% block body %}
+{%include 'student_toggle_button.html' %}
+<div class="flex flex-row h-screen">
+    {% include 'student_sidebar.html' %}
+    <!-- Showing the state of the proposal -->
+    <div class="flex flex-col text-[#EEEEEE] mx-5 w-full md:w-4/5 md:mr-2 md:ml-auto items-center space-y-2 overflow-y-scroll h-screen">
+        <h2 class="text-lg text-[#00ADB5] mb-1">Calificación Del Proyecto</h2>
+        <div class="flex flex-col w-full px-2 r items-center space-y-3">
+            <table class="text-[#eee] border border-[#00ADB5] w-4/5 mt-4 border-collapse">
+                <thead class="border-b border-[#00ADB5] bg-[#00ADB5]">
+                    <tr class="text-base">
+                        <th class="w-2/3">
+                            Criterio
+                        </th>
+                        <th class="w-1/6">
+                            Calificación
+                        </th>
+                        <th class="w-1/6">
+                            Observación
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <td class="font-semibold p-1 text-center bg-[#393E46] " colspan="3">
+                            1. Evaluación del Documento (1-35 puntos)
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold">1.1. Temática:</span> Se articula con una de las líneas de
+                            investigación del programa.
+                        </td>
+                        <td class="border-r border-l">
+                            {{scores.tematica_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.tematica_comment}}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold">1.2 Coherencia:</span> Hay una correcta descripción del
+                            problema, coherente, bien articulado y soportado.
+                        </td>
+                        <td class="border-r border-l">
+                            {{scores.coherencia_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.coherencia_comment}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="font-semibold p-1 text-center bg-[#393E46] " colspan="3">
+                            2. Propuesta de investigación (1-65 puntos)
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold">2.1. Planteamiento del problema:</span> Claridad y coherencia
+                            entre los diferentes puntos de la propuesta
+                        </td>
+                        <td class=" border-r border-l">
+                            {{scores.planteamiento_problema_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.planteamiento_problema_comment}}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold">2.2. Justificación: </span> Descripción breve del tema de
+                            investigación y su pertinencia.
+                        </td>
+                        <td class="border-r border-l">
+                            {{scores.justificacion_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.justificacion_comment}}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold">2.3. Objetivos: </span> Los objetivos son precisos y coherentes;
+                            conducen a la resolución del problema planteado.
+                        </td>
+                        <td class=" border-r border-l">
+                            {{scores.objetivos_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.objetivos_comment}}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold">2.4. Metodología: </span> Presentación del tipo y diseño de
+                            investigación, Población-muestra y técnicas de recolección de datos.
+                        </td>
+                        <td class="border-r border-l">
+                            {{scores.metodologia_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.metodologia_comment}}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold">2.5. Resultados:</span> Presenta los resultados esperados en
+                            relación con los objetivos propuestos para el desarrollo de la propuesta.
+                        </td>
+                        <td class="border-r border-l">
+                            {{scores.resultados_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.resultados_comment}}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-inherit border-t border-b">
+                        <td class="w-3/2 p-1">
+                            <span class="font-semibold"> 2.6. Principales Conclusiones (preliminares o finales):</span>
+                            Sintetiza aspectos globales de la investigación, presentando qué se obtuvo, qué se logró y
+                            los resultados.
+                        </td>
+                        <td class="border-r border-l">
+                            {{scores.principales_conclusiones_score}}
+                        </td>
+                        <td class="w-1/6">
+                            {{scores.principales_conclusiones_comment}}
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        <td class="bg-inherit" colspan="3">
+                            <span class="font-semibold">Comentario general: </span>{{scores.general_observations}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <a class="bg-[#393E46] mb-3 text-[#eee] p-1 md:w-1/3 rounded w-full text-center" href="{{url_for('student_blueprint.student', student_id = student_id)}}">Regresar</a>
+        </div>
+    </div>
+</div>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}

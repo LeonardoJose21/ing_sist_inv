@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin -  Add evaluator</title>
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+{% block body %}
+
+{%include 'admin_toggle_button.html' %}
+<div class="flex flex-row h-screen">
+    {% include 'admin_sidebar.html' %}
+    <form method="POST" action="{{url_for('admin_blueprint.associate_evaluator.associate_evaluator', project_id =project_information.project_id)}}" class="flex flex-col w-full mx-4 mt-5 items-center text-[#eee] space-y-5 md:w-4/5 md:mr-5 ml-auto">
+        {%if message%}
+
+        <div class="disappear bg-[#00FFCA]/50 border border-[#088395] text-[#222831] px-4 py-3 rounded w-4/5 mb-2"
+            role="alert">
+            <span>
+               Se asigno el evaluador correctamente!
+            </span>
+        </div>
+
+        {%endif%}
+        <h1 class="text-2xl text-[#00ADB5]">
+            Agregar Evaluadores
+        </h1>
+        <div class="flex flex-col space-y-1 md:flex-row md:space-x-5 text-base">
+            <div class="flex flex-col">
+                <ul class="list-disc">
+
+                    <li><span class="text-[#00ADB5] font-semibold"> Título del proyecto:</span> {{
+                        project_information.title }}</li>
+                    <li><span class="text-[#00ADB5] font-semibold"> Área de estudio:</span> {{
+                        project_information.area_of_study }}</li>
+                    <li><span class="text-[#00ADB5] font-semibold"> Asesor:</span> {{
+                        project_information.project_advisor_full_name }}</li>
+                    <li><span class="text-[#00ADB5] font-semibold"> Estado del proyecto:</span> {{
+                            project_information.state }}</li>
+                   
+
+                </ul>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="evaluator">Seleccionar evaluador</label>
+                <select
+                    class=" bg-[#222831] p-1 rounded border border-[#393E46] focus:outline-none focus:ring-1 focus:border-[#00ADB5]"
+                    name="evaluator" id="evaluator">
+                    {% for evaluator in evaluators %}
+
+                    <option value="{{evaluator.evaluator_id}}"> {{evaluator.names}} {{evaluator.lastnames}}</option>
+
+                    {%endfor%}
+
+                </select>
+            </div>
+        </div>
+
+        <input type="submit" value="Asignar Evaluador"
+            class="bg-[#00ADB5] p-1 rounded w-full md:w-1/4 hover:cursor-pointer {%if project_information.state != 'Sin evaluador'%} hidden {%endif%}">
+        <a href="{{url_for('admin_blueprint.assign_evaluator.admin_assign_evaluator')}}"
+            class="bg-[#393E46] p-1 rounded w-full md:w-1/4 text-center">Regresar</a>
+    </form>
+
+</div>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}

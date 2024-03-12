@@ -21,13 +21,127 @@ h3 {
   font-family: 'Open Sans', sans-serif;
 }
 
-/* .hero {
+/* #hero-section {
   background-image: url('../assets/landing.png');
   background-size: cover;
+  /* opacity: 0.4; */
+  .headline-container {
+    position: relative;
+  }
+  .headline-container:before {
+    content: "";
+    position: absolute;
+    top: calc( 100% - 2px );
+    width: 100%;
+    height: 4px;
+    background-color: #EEEEEE;
+    transform-origin: center center;
+    transform: scaleX(0);
+    -webkit-animation: line-animation 3s ease  alternate;
+            animation: line-animation 3s ease  alternate;
+  }
+  .headline-container h1#page-headline {
+    -webkit-animation: clip-path-reveal-1 3s ease  alternate;
+            animation: clip-path-reveal-1 3s ease  alternate;
+  }
   
-  /* Add any other background properties as needed */
+  @-webkit-keyframes line-animation {
+    0% {
+      transform: scaleX(0);
+    }
+    15% {
+      transform: scaleX(0);
+    }
+    20%, 25% {
+      transform: scaleX(1);
+      top: calc( 100% - 2px );
+    }
+    50% {
+      transform: scaleX(1);
+      top: 0px;
+    }
+    70% {
+      transform: scaleX(0.2);
+      top: 0px;
+    }
+    80%, 100% {
+      transform: scaleX(0.2);
+      top: 0px;
+    }
+  }
+  
+  @keyframes line-animation {
+    0% {
+      transform: scaleX(0);
+    }
+    15% {
+      transform: scaleX(0);
+    }
+    20%, 25% {
+      transform: scaleX(1);
+      top: calc( 100% - 2px );
+    }
+    50% {
+      transform: scaleX(1);
+      top: 0px;
+    }
+    70% {
+      transform: scaleX(0.2);
+      top: 0px;
+    }
+    80%, 100% {
+      transform: scaleX(0.2);
+      top: 0px;
+    }
+  }
+  @-webkit-keyframes clip-path-reveal-1 {
+    0%, 25% {
+      -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+              clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+    50% {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+              clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  }
+  @keyframes clip-path-reveal-1 {
+    0%, 25% {
+      -webkit-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+              clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+    50% {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+              clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  }
 
-/*
+/* ----------------------------------------------------------------*/
+ #container {
+    position: absolute;
+    margin: auto;
+
+    /* height: 80pt; */
+    /* top: 0;
+    bottom: 0; */
+
+    filter: url(#threshold) blur(0.6px);
+}
+
+#text1,
+#text2 {
+    position: absolute;
+    width: 100%;
+    display: inline-block;
+
+    /* font-family: "Raleway", sans-serif; */
+    /* font-size: 80pt; */
+
+    text-align: center;
+
+    user-select: none;
+}
+
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -61,4 +175,19 @@ input[type=number] {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
+}
+
+.disappear {
+  animation: fadeOut 3s ease-in-out forwards;
+  animation-delay: 2s; /* Delay the animation for 5 seconds */
+}
+
+@keyframes fadeOut {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+      display: none; /* Hide the button when opacity is 0 */
+  }
 }

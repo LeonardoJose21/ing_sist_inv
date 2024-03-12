@@ -1,0 +1,26 @@
+<!-- Sidebar -->
+<div id="sidebar_student"
+class="flex flex-col fixed text-[#EEEEEE] md:w-1/5 bg-[#393E46] p-2 h-screen overflow-y-scroll transition-transform -translate-x-full sm:translate-x-0 sm:w-1/5 z-30">
+    <h2 class="text-2xl border-b border-[#EEEEEE] mb-3 pb-1">Facultad De Ciencias E Ingenierías</h2>
+    <div class="flex flex-col items-center space-y-1">
+
+
+        <!-- Adjusted image size -->
+        <div class="h-14 w-14 rounded-full bg-[#222831]">
+            <h1 class="text-2xl font-semibold text-[#00ADB5] w-full h-full flex items-center justify-center">{{student_email.strip()[0].upper()}}</h1>
+        </div>
+
+        <p class="text-sm border-b border-[#EEEEEE] pb-1 w-full text-center">{{student_email}}</p>
+        <hr>
+    </div>
+    <!-- opciones -->
+    <div class="flex flex-col space-y-2 mt-4 ">
+        <!-- Added hover styles to buttons -->
+        <a class="rounded hover:cursor-pointer hover:bg-[#222831] p-2 {% if page == 'student' %} bg-[#00ADB5] {% endif %}"
+            href="{{ url_for('student_blueprint.student', student_id=student_id) }}">Inicio</a>
+        <a class="rounded hover:cursor-pointer hover:bg-[#222831] p-2 {% if page == 'register_proposal' %} bg-[#00ADB5] {% endif %}"
+            href="{{ url_for('student_blueprint.student_register_proposal.register_proposal', student_id=student_id) }}">Registrar Propuesta</a>
+        <a class="rounded hover:cursor-pointer hover:bg-[#222831] p-2 {% if page == 'log_out' %} bg-[#00ADB5] {% endif %}"
+            href="{{url_for('landing_blueprint.landing')}}">Cerrar Sesión</a>
+    </div>
+</div>

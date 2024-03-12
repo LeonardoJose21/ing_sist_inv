@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin - Login</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="h-screen">
+    <header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] items-center">
+        <a href="{{url_for('landing_blueprint.landing')}}" class="m-1 ml-3 flex flex-row">
+            <span>
+                Logo
+            </span>
+            <h1 class="text-2xl font-semibold">
+                Project Name
+            </h1>
+        </a>
+
+        <div class="mt-1 mr-3">
+            <a href="{{ url_for('landing_blueprint.landing') }}"
+                class="border border-[#EEEEEE] bg-[#222831] rounded p-1 hover:bg-[#00ADB5]">Home</a>
+
+        </div>
+    </header>
+    <div class="flex justify-center items-center h-full">
+        <div class="flex flex-col md:w-1/2 w-full mx-3">
+            {%if error%}
+
+            <div class="disappear bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-4/5 mb-2"
+                role="alert">
+                <span>
+                   Credenciales incorrectas. Intente de nuevo
+                </span>
+            </div>
+
+            {%endif%}
+            <div class="bg-[#00ADB5] rounded-t text-[#EEEEEE] p-1">
+        
+                <h3 class="text-lg">
+
+                    Administrar
+                   
+                </h3>
+              
+
+            </div>
+            <form method="POST"
+                class="flex flex-col p-4 space-y-2 bg-[#393E46] text-[#EEEEEE] rounded rounded-t-none border border-[#00ADB5]" action="{{url_for('admin_blueprint.log_in.log_in')}}">
+
+                <div class="flex flex-col space-y-1 ">
+                    <label for="user">Usuario</label>
+                    <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                        type="text" placeholder="Escriba su usuario" name="user" id="user">
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <label for="password">Constraseña</label>
+                    <input class="rounded p-1 text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                        type="password" name="password" id="password" placeholder="*****">
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <input class="bg-[#00ADB5] rounded p-1 mt-3 hover:cursor-pointer" type="submit"
+                        value="Iniciar Sesión">
+                   
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

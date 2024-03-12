@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Rol</title>
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+{% block body %}
+<div class="h-screen">
+    <header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] items-center">
+        <a href="{{url_for('landing_blueprint.landing')}}" class="m-1 ml-3 flex flex-row">
+            <span>
+                <img src="{{url_for('static', filename = 'assets/logo.png')}}"  alt="Logo" class="h-full w-14">
+            </span>
+            <h1 class="text-2xl font-semibold pt-3">
+                ProjectSync
+            </h1>
+        </a>
+
+        <div class="mt-1 mr-3">
+            <a href="{{ url_for('landing_blueprint.landing') }}"
+                class="border border-[#EEEEEE] bg-[#222831] rounded p-1 hover:bg-[#00ADB5]">Home</a>
+
+        </div>
+    </header>
+    <div class="flex justify-center items-center h-full">
+        <div class="flex flex-col md:w-1/2 w-full mx-3">
+            <div class="bg-[#00ADB5] rounded-t text-[#EEEEEE] p-1">
+                <h3 class="text-lg">Especifique Su Rol</h3>
+            </div>
+            <form method="GET" action="{{url_for('submit_role_blueprint.submit_role')}}"
+                class="flex flex-col p-4 space-y-2 bg-[#393E46] text-[#EEEEEE] rounded rounded-t-none border border-[#00ADB5]">
+
+                <div class="flex flex-col space-y-1 ">
+                    <label for="role">Seleccione su rol dentro de la institución</label>
+                    <select name="role" id="role" class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]">
+                        <option value="estudiante">Estudiante</option>
+                        <option value="evaluador">Evaluador</option>
+                    </select>
+                </div>
+                
+
+                <div class="flex justify-end">
+                    <input class="bg-[#00ADB5] rounded p-1 mt-3 hover:cursor-pointer" type="submit"
+                        value="Continuar">
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

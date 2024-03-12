@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Signup</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="h-screen overflow-y-scroll">
+    <header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] items-center ">
+        <a href="{{url_for('landing_blueprint.landing')}}" class="m-1 ml-3 flex flex-row">
+            <span>
+                <img src="{{url_for('static', filename = 'assets/logo.png')}}"  alt="Logo" class="h-full w-14">
+            </span>
+            <h1 class="text-2xl font-semibold pt-3">
+                ProjectSync
+            </h1>
+        </a>
+
+        <div class="mt-1 mr-3">
+            <a href="{{ url_for('landing_blueprint.landing') }}"
+                class="border border-[#EEEEEE] bg-[#222831] rounded p-1 hover:bg-[#00ADB5]">Home</a>
+
+        </div>
+    </header>
+    <div class="h-full my-3">
+        <div class="flex justify-center items-center">
+            <div class="flex flex-col md:w-1/2 w-full mx-3">
+                {% if 'pass_no_equal' in choosen_role.split('-') %}
+
+                <div class="disappear bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-4/5 mb-2"
+                    role="alert">
+                    <span>
+                        Las contraseñas no coinciden. Intente de nuevo
+                    </span>
+                </div>
+    
+                {% endif %}
+                {% if 'already_signed_up' in choosen_role.split('-') %}
+
+                <div class="disappear bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded w-4/5 mb-2"
+                    role="alert">
+                    <span>
+                        Usted ya se encuentra registrado. Por favor inicie sesión.
+                    </span>
+                </div>
+    
+                {% endif %}
+                <div class="bg-[#00ADB5] rounded-t text-[#EEEEEE] p-1">
+                    <h3 class="text-lg">Registro De {{choosen_role.split('-')[0].capitalize()}}</h3>
+                </div>
+                <form method="POST" action="{{url_for('sign_up_validation_blueprint.sign_up_validation', choosen_role=choosen_role)}}"
+                    class="flex flex-col p-4 space-y-2 bg-[#393E46] text-[#EEEEEE] rounded rounded-t-none border border-[#00ADB5]">
+    
+                    <div class="h-full">
+                        {% if choosen_role.split('-')[0] != 'estudiante' %}
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="evaluator_id_type">Tipo de identificación</label>
+                            <select name="evaluator_id_type" id="evaluator_id_type" class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]">
+                                <option value="select">Seleccione</option>
+                                <option value="Cedula de ciudadania">Cédula de ciudadanía</option>
+                                <option value="Cedula de extranjeria">Cédula de extranjería</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="evaluator_id">Número de identificación</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="number"  name="evaluator_id" id="evaluator_id">
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="evaluator_name">Nombres</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="text" placeholder="Jhon José" name="evaluator_name" id="email">
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="evaluator_lastname">Apellidos</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="text" placeholder="Pastrana Ospina" name="evaluator_lastname" id="evaluator_lastname">
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="evaluator_grade">Título profesional</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="text" name="evaluator_grade" id="evaluator_grade">
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="evaluator_email">Correo institucional</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="email" placeholder="Escriba su correo institucional" name="evaluator_email" id="evaluator_email" required>
+                        </div>
+                        {%else %}
+             
+
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="student_names">Nombres</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="text" placeholder="Escriba sus nombres" name="student_names" id="student_names" required>
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="student_surnames">Apellidos</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="text" placeholder="Escriba sus apellidos" name="student_surnames" id="student_surnames" required>
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="student_code">Código estudiantil</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="text" placeholder="Escriba su código estudiantil" name="student_code" id="student_code" required>
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="student_email">Correo institucional</label>
+                            <input class="rounded p-1  text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="email" placeholder="Escriba su correo institucional" name="student_email" id="student_email" required>
+                        </div>
+                        {%endif %}
+                       
+                        <div class="flex flex-col space-y-1">
+                            <label for="pass">Constraseña</label>
+                            <input class="rounded p-1 text-[#222831] focus:outline-none focus:ring focus:border-[#00ADB5]"
+                                type="password" name="pass" id="pass" placeholder="*****" required>
+                        </div>
+                        <div class="flex flex-col space-y-1 ">
+                            <label for="confirm_password">Confirme su contraseña</label>
+                            <input class="rounded p-1 focus:outline-none focus:ring focus:border-[#00ADB5] text-[#222831]"
+                                type="password" name="confirm_password" id="confirm_password" placeholder="*****" required>
+                        </div>
+                    </div>
+                   
+                    <div class="flex flex-col md:flex-row space-y-1 md:space-x-3 md:items-center md:justify-between">
+                        <a href="{{url_for('log_in_blueprint.log_in', choosen_role=choosen_role.split('-')[0])}}" class="text-sm text-[#00ADB5] mt-4  md:mt-6">Ir a login</a>
+                        <input class="bg-[#00ADB5] rounded p-1 hover:cursor-pointer md:mt-6" type="submit"
+                            value="Registrarme">
+                    </div>
+    
+                </form>
+            </div>
+    
+    
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

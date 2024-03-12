@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Evaluador</title>
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+{% block body %}
+<div class="flex flex-col h-full mt-6 w-full items-center">
+    <h1 class="text-2xl text-[#00ADB5]">Proyecto Asignado</h1>
+    <div class=" flex flex-col md:flex-row text-[#eee] mt-3 text-center">
+        <div class="flex flex-col space-y-1 border border-[#00ADB5] p-1 md:rounded-l rounded-t">
+            <h3 class="font-semibold border-b border-[#393E46]">
+                Título del proyecto
+            </h3>
+            <span>{{project.title}}</span>
+        </div>
+        <div class="flex flex-col space-y-1 border border-[#00ADB5] p-1">
+            <h3 class="font-semibold border-b border-[#393E46]">
+                Código estudiantil de los autores
+            </h3>
+            <ul>
+                <li>{{ project.author_1_id}}</li>
+                <li>{{project.author_2_id}}</li>
+                <li>{{project.author_3_id}}</li>
+                
+            </ul>
+        </div>
+        <div class="flex flex-col space-y-1 border border-[#00ADB5] p-1 md:rounded-r rounded-b">
+            <h3 class="font-semibold border-b border-[#393E46]">
+                Área de investigación
+            </h3>
+            <span>{{project.area_of_study}}</span>
+        </div>
+        <div class="flex flex-col space-y-1 border border-[#00ADB5] p-1 md:rounded-r rounded-b">
+            <h3 class="font-semibold border-b border-[#393E46]">
+                Archivo
+            </h3>
+            <span><a class="underline" href="{{url_for('admin_blueprint.download_file.download_file', file_path=project.file_path)}}">{{project.file_path.split('\\')[-1]}}</a></span>
+        </div>
+    </div>
+    <h2 class="text-lg text-[#00ADB5] mt-5">
+        Evaluar proyecto
+    </h2>
+
+    <div class="text-[#eee] md:w-3/5 mx-4">
+        <p class="font-semibold">Respetado evaluardor:</p>
+         <p>Agradecemos su oportuna y valiosa colaboración al servirnos como par evaluador. Los trabajos presentados se deben calificar de manera cuantitativa y cualitativa según los siguientes criterios:</p>
+    </div>
+    <form method="POST" action="{{url_for('evaluator_blueprint.send_scores.send_scores', project_id = project.project_id)}}" class="flex flex-col w-full px-2 justify-center items-center space-y-3 ">
+        <table class="text-[#eee] border border-[#00ADB5] w-4/5 mt-4">
+            <thead class="border-b border-[#00ADB5] bg-[#00ADB5]">
+                <tr class="text-lg">
+                    <th class="w-2/3">
+                        Criterio
+                    </th>
+                    <th class="w-1/6">
+                        Calificación
+                    </th>
+                    <th class="w-1/6">
+                        Observación
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-semibold p-1 text-center bg-[#393E46] " colspan="3">
+                        1. Evaluación del Documento (1-35 puntos)
+                    </td>
+                </tr>
+    
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold">1.1. Temática:</span> Se articula con una de las líneas de investigación del programa. 
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="tematica_score" id="tematica_1_1">
+                            {% for i in range(0,10) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 10
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="tematica_comment" id="tematica_1_1_obs" ></textarea>
+                    </td>
+                </tr>
+    
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold">1.2 Coherencia:</span> Hay una correcta descripción del problema, coherente, bien articulado y soportado.
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="coherencia_score" id="coherencia_score">
+                            {% for i in range(0,25) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 25
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="coherencia_comment" id="coherencia_1_2_obs" ></textarea>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="font-semibold p-1 text-center bg-[#393E46] " colspan="3">
+                        2. Propuesta de investigación (1-65 puntos)
+                    </td>
+                </tr>
+    
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold">2.1. Planteamiento del problema:</span> Claridad y coherencia entre los diferentes puntos de la propuesta
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="planteamiento_problema_score" id="planteamiento_pro_2_1">
+                            {% for i in range(0,10) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 10
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="planteamiento_problema_comment" id="planteamiento_pro_2_1_obs" ></textarea>
+                    </td>
+                </tr>
+    
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold">2.2. Justificación: </span> Descripción breve del tema de investigación y su pertinencia.
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="justificacion_score" id="justificacion_2_2">
+                            {% for i in range(0,10) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 10
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="justificacion_comment" id="justificacion_2_2_obs" ></textarea>
+                    </td>
+                </tr>
+    
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold">2.3. Objetivos: </span>  Los objetivos son precisos y coherentes; conducen a la resolución del problema planteado.
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="objetivos_score" id="objetivos_2_3">
+                            {% for i in range(0,10) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 10
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="objetivos_comment" id="objetivos_2_3_obs" ></textarea>
+                    </td>
+                </tr>
+                
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold">2.4. Metodología: </span>  Presentación del tipo y diseño de investigación, Población-muestra y técnicas de recolección de datos.
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="metodologia_score" id="metodologia_2_4">
+                            {% for i in range(0,10) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 10
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="metodologia_comment" id="metodologia_2_4_obs" ></textarea>
+                    </td>
+                </tr>
+    
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold">2.5. Resultados:</span> Presenta los resultados esperados en relación con los objetivos propuestos para el desarrollo de la propuesta.
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="resultados_score" id="resultados_2_5">
+                            {% for i in range(0,20) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 20
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="resultados_comment" id="resultados_2_5_obs" ></textarea>
+                    </td>
+                </tr>
+    
+                <tr class="bg-inherit">
+                    <td class="w-3/2 p-1">
+                        <span class="font-semibold"> 2.6. Principales Conclusiones (preliminares o finales):</span> Sintetiza aspectos globales de la investigación, presentando qué se obtuvo, qué se logró y los resultados.
+                    </td>
+                    <td class="flex flex-row space-x-1">
+                        <select class="w-2/3 bg-inherit text-right py-5" name="principales_conclusiones_score" id="conclusiones_2_6">
+                            {% for i in range(0,5) %}
+                            <option class="bg-inherit text-[#222831]" value="{{ i+1 }}">{{ i+1 }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="w-1/3 py-5">
+                            / 5
+                        </span>
+                    </td>
+                    <td class="w-1/6">
+                        <textarea class="bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="principales_conclusiones_comment" id="conclusiones_2_6_obs" ></textarea>
+                    </td>
+                </tr>
+    
+                <tr>
+                    
+                    <td class="bg-inherit" colspan="3">
+                        <textarea placeholder="Observaciones generales" class="w-4/5 ml-4 bg-inherit m-2 border focus:outline-none focus:ring-1 focus:border-[#00ADB5] h-15 odd:border-[#393E46]  even:border-[#222831] rounded p-1 " type="text" name="general_observations" id="conclusiones_2_6_obs" ></textarea>
+                    </td>
+                </tr>
+    
+            </tbody>
+        </table>
+        <input class="bg-[#00ADB5] text-[#eee] p-2 md:w-1/3 rounded w-full hover:cursor-pointer" type="submit" value="Enviar Evaluación">
+        <a class="bg-[#393E46] text-[#eee] p-1 md:w-1/3 rounded w-full text-center" href="{{url_for('evaluator_blueprint.evaluator')}}">Cerrar</a>
+    </form>
+    
+</div>
+{% endblock %}

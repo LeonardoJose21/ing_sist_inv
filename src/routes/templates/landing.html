@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Gestión y Seguimiento de Proyectos</title>
+{% endblock %}
+
+
+{% block body %}
+
+<header class="flex flex-row justify-between text-[#EEEEEE] bg-[#393E46] items-center">
+    <a href="{{url_for('landing_blueprint.landing')}}" class="m-1 ml-3 flex flex-row">
+        <span>
+            <img src="{{url_for('static', filename = 'assets/logo.png')}}"  alt="Logo" class="h-full w-14">
+        </span>
+        <h1 class="text-2xl font-semibold pt-3">
+            ProjectSync
+        </h1>
+    </a>
+
+    <div class="mt-1 mr-3 space-x-1">
+        <a href="{{ url_for('rol_blueprint.rol', action = 'log_in') }}"
+            class="border border-[#EEEEEE] bg-[#222831] rounded p-1 hover:bg-[#00ADB5]">Iniciar Sesión</a>
+        <a href="{{ url_for('rol_blueprint.rol', action = 'sign_up') }}"
+            class="bg-[#222831] text-[#EEEEEE]  hover:bg-[#00ADB5] border border-[#EEEEEE] rounded p-1 ">Empezar</a>
+    </div>
+</header>
+<main
+    class="flex flex-col justify-around h-screen items-center md:flex-row space-y-3 bg-gradient-to-b from-[#222831] to-[#393E46]">
+
+    <section class=" flex flex-col md:w-1/3 mx-4">
+        <div class="headline-container">
+            <h1 id="page-headline" class="text-5xl font-semibold mb-2 text-[#00ADB5]" >Gestión y Seguimiento de Proyectos</h1>
+        </div>
+
+        <p class="mt-6 text-base text-[#EEEEEE]">Este sistema está diseñado para facilitar la gestión y seguimiento
+            de proyectos de grado e investigación
+            en el programa de Ingeniería de Sistemas de la Universidad del Sinú.</p>
+    </section>
+    <section class="text-base text-[#EEEEEE]">
+        <h3 class="text-3xl text-[#00ADB5] mb-3">Funcionalidades Principales</h3>
+
+        <ul class="list-disc ml-3 text-2xl" id="container">
+
+                <li class="text-nowrap" id="text1"></li>
+                <li class="text-nowrap" id="text2"></li>
+        </ul>
+        <svg id="filters">
+            <defs>
+                <filter id="threshold">
+                    <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                          0 1 0 0 0
+                          0 0 1 0 0
+                          0 0 0 255 -140" />
+                </filter>
+            </defs>
+        </svg>
+    </section>
+</main>
+</div>
+
+<footer class="text-[#EEEEEE] text-sm bg-[#393E46] text-center">
+    <p>&copy; 2024 Universidad del Sinú - Todos los derechos reservados.</p>
+</footer>
+<script src="{{url_for('static', filename = 'js/landing_animation.js')}}"></script>
+{% endblock %}

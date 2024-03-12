@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Estudiante</title>
+{% endblock %}
+
+
+{% block body %}
+{%include 'student_toggle_button.html' %}
+<div class="flex flex-row h-screen">
+    {% include 'student_sidebar.html' %}
+    <!-- Showing the state of the proposal -->
+    <div class="flex flex-col text-[#EEEEEE] mx-5 justify-center w-full items-center space-y-2">
+        <h2 class="text-lg text-[#00ADB5] mb-3">Estado Del Proyecto</h2>
+        <ol>
+            <li
+                class="bg-[#393E46] rounded p-2  {% if not has_uploaded_proposal %}  opacity-70 {%else%} border border-[#EEE] {%endif%}">
+                <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831] border border-[#EEE]">1</span>
+                Propuesta Entregada
+                {%if has_uploaded_proposal %}
+                <span class="text-[#00ADB5]">
+                    ✔ 
+                </span>
+                {%else %}
+                <span>
+                    ✗
+                </span>
+                {%endif %}
+            </li>
+            <div
+                class="w-1/2 h-12 border-dotted border-r-2 border-r-[#00ADB5] {%if not has_uploaded_proposal %} opacity-70 {%endif%}">
+            </div>
+            <li
+                class="bg-[#393E46] rounded p-2 {%if not proposal_is_assigned %}opacity-70 {%else%} border border-[#EEE]  {%endif%}">
+                <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831]">2</span>
+                Propuesta Asignada
+                {%if proposal_is_assigned %}
+                <span class="text-[#00ADB5]">
+                    ✔
+                </span>
+                {%else %}
+                <span>
+                    ✗
+                </span>
+                {%endif %}
+
+            </li>
+            <div
+                class="w-1/2 h-12 border-dotted border-r-2 border-r-[#00ADB5] {%if not proposal_is_assigned %} opacity-70 {%endif%}">
+            </div>
+            <li
+                class="bg-[#393E46] rounded p-2 {%if not proposal_is_reviewed %}opacity-70 {%else%} border border-[#EEE]  {%endif%}">
+                <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831]">3</span>
+                Propuesta Evaluada
+                {%if proposal_is_reviewed %}
+                <span class="text-[#00ADB5]">
+                    ✔
+                </span>
+                {%else %}
+                <span>
+                    ✗
+                </span>
+                {%endif %}
+
+            </li>
+            <div
+                class="w-1/2 h-12 border-dotted border-r-2 border-r-[#00ADB5] {%if not proposal_is_reviewed %} opacity-70 {%endif%}">
+            </div>
+            <li
+                class="bg-[#393E46] rounded p-2 {%if not proposal_is_reviewed %}opacity-70 {%else%} border border-[#EEE]  {%endif%}">
+                <a href="{{url_for('student_blueprint.see_score.see_score', student_id = student_id)}}">
+                    <span class="rounded-full bg-[#00ADB5] p-1 text-[#222831]">4</span>
+                    Ver Calificación
+                    <span class=" ml-4{%if proposal_is_reviewed %} text-[#00ADB5] {%endif%}">
+                        👁
+                    </span>
+                </a>
+                
+            </li>
+        </ol>
+    </div>
+</div>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}

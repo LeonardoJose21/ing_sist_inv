@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin - Assign evaluator</title>
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+{% block body %}
+
+{%include 'admin_toggle_button.html' %}
+<div class="flex flex-row">
+    {% include 'admin_sidebar.html' %}
+    <div class="flex flex-col h-screen md:w-5/6 mt-5 justify-center items-center space-y-3 md:mr-4 md:ml-auto mx-2">
+        <h1 class="text-[#00ADB5] text-2xl text-center">
+            Asignar Proyectos
+        </h1>
+        <div class="flex md:flex-row flex-col md:justify-around w-5/6 text-[#eee] sm:justify-center">
+            <div class="flex flex-row items-center space-x-2">
+                Mostrar
+                <select class="bg-inherit text-center" name="number_rows_show" id="number_rows_show">
+                    <option class="text-[#222831]" value="5">5</option>
+                    <option class="text-[#222831]" value="10">10</option>
+                    <option class="text-[#222831]" value="20">20</option>
+                    <option class="text-[#222831]" value="50">50</option>
+                    <option class="text-[#222831]" value="100">100</option>
+                </select>
+                filas
+            </div>
+            <div>
+                Buscar
+                <input
+                    class="bg-inherit m-2 focus:outline-none focus:ring-1 focus:border-[#00ADB5]  border border-[#393E46]  rounded p-1 "
+                    type="text" name="search" id="searchInput">
+            </div>
+        </div>
+        <table class="text-[#eee] md:w-5/6 border border-[#00ADB5] text-center mx-2" id="dataTable">
+            <thead class="bg-[#393E46] border-b border-[#00ADB5]">
+                <th>
+                    #
+                </th>
+                <th>
+                    Título
+                </th>
+                <th>
+                    Área de estudio
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.area_of_study }}</td>
+
+                    <td>
+                        <a class="w-full text-[#00ADB5]" href="{{url_for('admin_blueprint.add_evaluator.add_evaluator', project_id = project.project_id)}}"> Asignar </a>
+                    </td>
+                </tr>
+                {% endfor %}
+               
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="{{url_for('static', filename='js/Search.js')}}"></script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!-- Sidebar -->
+
+<div id="sidebar_admin"
+    class="flex flex-col fixed text-[#EEEEEE] md:w-1/5 bg-[#393E46] p-2 h-screen overflow-y-scroll transition-transform -translate-x-full sm:translate-x-0 sm:w-1/5 sidebar">
+
+  
+    <h2 class="text-2xl border-b border-[#EEEEEE] mb-3 pb-1">Ingeniería De Sistemas - Unisinú</h2>
+    <div class="flex flex-col items-center space-y-1">
+
+
+        <!-- Adjusted image size -->
+        <div class="h-14 w-14 rounded-full bg-[#222831]">
+            <h1 class="text-2xl font-semibold text-[#00ADB5] w-full h-full flex items-center justify-center">A</h1>
+        </div>
+
+        <p class="text-sm border-b border-[#EEEEEE] pb-1 w-full text-center">Administrador</p>
+        <hr>
+    </div>
+    <!-- opciones -->
+    <div class="flex flex-col space-y-2 mt-4 ">
+        <!-- Added hover styles to buttons -->
+        <a class="rounded hover:cursor-pointer hover:bg-[#222831] p-2 {% if page == 'admin_all_projects' %} bg-[#00ADB5] {% endif %}"
+            href="{{ url_for('admin_blueprint.all_projects.admin_all_projects') }}">Todos Los Proyectos</a>
+        <a class="rounded hover:cursor-pointer hover:bg-[#222831] p-2 {% if page == 'admin_assign_evaluator' %} bg-[#00ADB5] {% endif %}"
+            href="{{ url_for('admin_blueprint.assign_evaluator.admin_assign_evaluator') }}">Asignar Evaluador</a>
+        <a class="rounded hover:cursor-pointer hover:bg-[#222831] p-2 {% if page == 'admin_filter_and_group' %} bg-[#00ADB5] {% endif %}"
+            href="{{ url_for('admin_blueprint.filter_and_group.admin_filter_and_group')}}">Filtrar Proyectos</a>
+        <a class="rounded hover:cursor-pointer hover:bg-[#222831] p-2 {% if page == 'log_out' %} bg-[#00ADB5] {% endif %}"
+            href="{{url_for('landing_blueprint.landing')}}">Cerrar Sesión</a>
+    </div>
+</div>
